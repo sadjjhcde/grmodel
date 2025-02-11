@@ -25,6 +25,7 @@ public class GRModel {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                    System.out.println(ex.toString());
                 }
 
                 GRModelPanel grModelPanel = new GRModelPanel();
@@ -37,7 +38,7 @@ public class GRModel {
                 frame.setResizable(false);
                 frame.setVisible(true);
                 Timer timer = new Timer(FRAME_TIMEOUT_MS, grModelPanel);
-                timer.setInitialDelay(FRAME_TIMEOUT_MS);
+                timer.setInitialDelay(FRAME_TIMEOUT_MS * 10);
                 timer.start();
             }
         });
@@ -45,12 +46,11 @@ public class GRModel {
 
     public static class GRModelPanel extends JPanel implements ActionListener {
 
-        private int[][] possibleCells = {
+        private final int[][] possibleCells = {
                 {LIMIT, 0, 0},
                 {0, LIMIT, 0},
                 {0, 0, LIMIT}
         };
-
 
         private int[][][] cells = new int[MODEL_SIZE][MODEL_SIZE][3];
 
@@ -69,13 +69,13 @@ public class GRModel {
             buildFullRandomModel(20);
 
             // 3
-//            buildFullRandomModel(140);
+//            buildFullRandomModel(120);
 
             // 4
-//            buildRandomSquareModel(50, 50, 20, 5);
+//            buildRandomSquareModel(60, 60, 20, 5);
 
             // 5
-//            buildAlternationSquareModel(50, 50, 20, 5);
+//            buildAlternationSquareModel(50, 50, 20, 6);
 
             // 6
 //            buildAlternationSquareModel(25, 25, 3, 50);
